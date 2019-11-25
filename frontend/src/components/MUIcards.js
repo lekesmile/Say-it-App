@@ -23,7 +23,7 @@ export default function Cards(props) {
     return (
       
        
-        <Card className={classes.card}  >
+        <Card className={classes.card} >
                     <CardActionArea>
                         <CardMedia
                             className={classes.media}
@@ -41,10 +41,10 @@ export default function Cards(props) {
                     </CardActionArea>
                     <CardActions>
                         <Button size="small" color="primary">
-                            Share
+                            Edit
         </Button>
                         <Button size="small" color="primary">
-                            Learn More
+                            Delete
         </Button>
                     </CardActions>
                 </Card>

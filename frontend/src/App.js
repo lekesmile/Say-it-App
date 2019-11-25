@@ -3,6 +3,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import { Container } from '@material-ui/core'
 import Home from './views/Home'
+import AddPost from './components/AddPost'
 
 
 export default class App extends Component {
@@ -12,9 +13,11 @@ export default class App extends Component {
         <Navbar />
         <Container >
         <h1> Say it Out !</h1>
-          <div className="homerow">
+
+        <AddPost />
+         
         <Home  />
-          </div>
+      
         </Container>
         
       </div>

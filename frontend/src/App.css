@@ -11,10 +11,17 @@ h1 {
 .homeflex {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  flex: auto;
+  display: flex;
 }
 
 .homerow {
   justify-content: space-between;
   flex: auto;
   display: flex;
+}
+
+.formA{
+ padding:20px 0;
 }

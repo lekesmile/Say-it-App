@@ -17,17 +17,21 @@ export default class Home extends Component {
             .catch(error => console.log(`Error fetch API ${error}`))
     }
 
+    shouldComponentUpdate() {
+        return true;
+    }
+
     render() {
         let { getData } = this.state
         return (
 
 
-            <div className="homeflex">
+            <div>
                 {getData.map(getd => (
 
                     <MUIcards
                         key={getd._id}
-                        headtitle={getd.title}
+                        headtitles={getd.title}
                         body={getd.body}
 
                     />
