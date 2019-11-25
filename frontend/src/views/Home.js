@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 import MUIcards from '../components/MUIcards'
-import Grid from '@material-ui/core/Grid';
 
 
 export default class Home extends Component {
@@ -10,7 +9,7 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        Axios.get('http://localhost:8080/post')
+        Axios.get('http://localhost:5000/post')
             .then(response => {
                 this.setState({ getData: response.data });
                 console.log(this.state)
@@ -21,20 +20,21 @@ export default class Home extends Component {
     render() {
         let { getData } = this.state
         return (
-          
-                <Grid container direction="row" spacing={3} xl={4} >
 
 
-                    {getData.map(getd => (
-                        <MUIcards
-                            headtitle={getd.title}
-                            body={getd.body}
+            <div className="homeflex">
+                {getData.map(getd => (
 
-                        />
-                    ))}
-                </Grid>
+                    <MUIcards
+                        key={getd._id}
+                        headtitle={getd.title}
+                        body={getd.body}
 
-            
+                    />
+
+                ))}
+
+            </div>
         )
     }
 }

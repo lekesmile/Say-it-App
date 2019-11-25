@@ -10,9 +10,11 @@ export default class App extends Component {
     return (
       <div>
         <Navbar />
-        <Container>
+        <Container >
         <h1> Say it Out !</h1>
-         <Home />
+          <div className="homerow">
+        <Home  />
+          </div>
         </Container>
         
       </div>
