@@ -10,6 +10,7 @@ export default class AddPost extends Component {
         title: '',
         body: ''
     }
+
     useStyles = makeStyles(theme => ({
         rootit: {
             display: 'flex',
@@ -22,9 +23,13 @@ export default class AddPost extends Component {
     }));
 
     handleFormInput = (e) => {
+        if (e.target.name === " ") {
+            alert("Fields cannot be empty");
+        }
         this.setState({
             [e.target.name]: e.target.value
         })
+
         console.log(this.state)
     }
 
