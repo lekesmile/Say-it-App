@@ -3,7 +3,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import { Container } from '@material-ui/core'
 import Home from './views/Home'
-import AddPost from './components/AddPost'
+import AddPost from './views/AddPost'
 
 
 export default class App extends Component {

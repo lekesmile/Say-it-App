@@ -30,7 +30,7 @@ router.post('/login', async (req, res, next) => {
 
             jwt.sign({ _id: user._id }, config.JWT_Secret, { expiresIn: 3600 }, (err, token) => {
                 if (err) throw err;
-                return res.status(200).header('auth-token', token).json({ message: "login Successfull" });
+                return res.status(200).json({ message: "login Successfull", 'Authorization': token, "personalId": user.personalId });
             })
 
 

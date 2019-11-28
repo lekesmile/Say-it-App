@@ -33,19 +33,24 @@ export default class AddPost extends Component {
         console.log(this.state)
     }
 
+
     handleSubmit = (e) => {
         e.preventDefault();
+
+        const header = {
+            Authorization:
+                'token ' + JSON.parse(localStorage.getItem('token'))
+        }
 
         const sayIt = {
             title: this.state.title,
             body: this.state.body
         }
 
-        Axios.post('http://localhost:5000/post', sayIt)
+        Axios.post('http://localhost:5000/post', header, sayIt)
             .then(res =>
                 console.log(res)
             )
-        console.log('submitted')
 
     }
 
@@ -85,7 +90,7 @@ export default class AddPost extends Component {
                         size="extended"
                         startIcon={<SaveIcon />}
                     >
-                        Primary
+                        Post
                     </Button>
 
 

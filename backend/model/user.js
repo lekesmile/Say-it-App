@@ -1,7 +1,9 @@
 'use strict'
 
 const mongoose = require('mongoose');
+const uuid = require('uuid')
 const Schema = mongoose.Schema;
+
 
 const userSchema = new Schema({
 
@@ -17,13 +19,18 @@ const userSchema = new Schema({
 
     },
 
+    personalId: {
+        type: String,
+        default: uuid.v4()
+
+    },
+
     date: {
         type: Date,
         default: Date.now()
     },
 
-    role:
-    {
+    role: {
         admin: {
             type: String,
             default: false

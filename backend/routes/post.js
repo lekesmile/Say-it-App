@@ -4,6 +4,7 @@ const express = require('express');
 const Post = require('../model/post')
 const router = express.Router();
 const {postValidation} = require('../validation/validation')
+const veritytoken = require('../middleware/verifytoken')
 
 
 router.get('/post', async (req, res, next) => {
@@ -31,7 +32,7 @@ router.get('/post/:id', async (req, res, next) => {
 })
 
 
-router.post('/post', async (req, res, next) => {
+router.post('/post', veritytoken, async (req, res, next) => {
     // Validate user input
     const {error} = postValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
