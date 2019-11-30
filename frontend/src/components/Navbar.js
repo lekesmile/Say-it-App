@@ -3,9 +3,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import {  makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import Login from '../views/Login'
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,7 +21,15 @@ const useStyles = makeStyles(theme => ({
             display: 'block',
         },
     },
-    
+    links:{
+        textTransform: 'upperCase',
+        fontSize: 15,
+        padding: 20,
+        color:'white',
+        textDecoration:'none',
+        
+    }
+
 }));
 
 export default function Navbar() {
@@ -41,10 +49,9 @@ export default function Navbar() {
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
                         SAY IT OUT !
-          </Typography>
-
-                    <Login />
-
+                    </Typography>
+                    <Link className={classes.links} to="/login">login</Link>
+                    <Link className={classes.links} to="/signup">Signup</Link>
                 </Toolbar>
             </AppBar>
         </div>

@@ -4,11 +4,13 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
 import SaveIcon from '@material-ui/icons/Save';
 import Axios from 'axios';
+import { Redirect } from 'react-router-dom'
 
 export default class AddPost extends Component {
     state = {
         title: '',
-        body: ''
+        body: '',
+        loggedIn: false
     }
 
     useStyles = makeStyles(theme => ({
@@ -21,6 +23,15 @@ export default class AddPost extends Component {
             },
         },
     }));
+
+
+    // componentWillMount() {
+    //     if (localStorage.getItem(JSON.parse("userData"))) {
+    //         console.log("User On")
+    //     } else {
+    //         this.setState({ loggedIn: true })
+    //     }
+    // }
 
     handleFormInput = (e) => {
         if (e.target.name === " ") {
@@ -36,28 +47,48 @@ export default class AddPost extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        try {
+            let gettoken = JSON.parse(localStorage.getItem('userData'));
+            let token = gettoken.data.authorization
 
-        const header = {
-            Authorization:
-                'token ' + JSON.parse(localStorage.getItem('token'))
+            const sayIt = {
+                title: this.state.title,
+                body: this.state.body
+            }
+
+
+
+            Axios.post('http://localhost:5000/post', sayIt, {
+                headers: {
+                    'Authorization': token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(res =>
+                    console.log(res)
+                )
+
         }
 
-        const sayIt = {
-            title: this.state.title,
-            body: this.state.body
-        }
-
-        Axios.post('http://localhost:5000/post', header, sayIt)
-            .then(res =>
-                console.log(res)
-            )
-
+      
+       
+       catch(error) {
+        console.log('You have to login in');
+        alert('Please log in to post message');
+        return error
     }
+
+ }
+
+
 
 
     render() {
         const classes = this.useStyles;
-
+        if (this.state.loggedIn === true) {
+            return (<Redirect to={"/"} />)
+        }
         return (
             <div className="formA">
                 <form className={classes.rootit} onSubmit={this.handleSubmit}>

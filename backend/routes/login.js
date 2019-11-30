@@ -28,9 +28,16 @@ router.post('/login', async (req, res, next) => {
             const comPassword = await bcrypt.compareSync(password, user.password);
             if (!comPassword) return res.status(400).json({ user: "Wrong Password" });
 
-            jwt.sign({ _id: user._id }, config.JWT_Secret, { expiresIn: 3600 }, (err, token) => {
+            const payload = {
+                user: {
+                    id: user._id,
+                    user: user.username
+                }
+            };
+
+            jwt.sign( payload , config.JWT_Secret, { expiresIn: 3600 }, (err, token) => {
                 if (err) throw err;
-                return res.status(200).json({ message: "login Successfull", 'Authorization': token, "personalId": user.personalId });
+                return res.status(200).json({ message: "login Successfull", 'authorization': token, "user": user }).headers(token);
             })
 
 
