@@ -25,16 +25,8 @@ export default class AddPost extends Component {
     }));
 
 
-    // componentWillMount() {
-    //     if (localStorage.getItem(JSON.parse("userData"))) {
-    //         console.log("User On")
-    //     } else {
-    //         this.setState({ loggedIn: true })
-    //     }
-    // }
-
     handleFormInput = (e) => {
-        if (e.target.name === " ") {
+        if (e.target.name === "") {
             alert("Fields cannot be empty");
         }
         this.setState({

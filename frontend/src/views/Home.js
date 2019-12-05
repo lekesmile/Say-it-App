@@ -2,40 +2,43 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import MUIcards from '../components/MUIcards'
 import Navbar from '../components/Navbar'
+import NavbarCopy from '../components/NavbarCopy'
 import { Container } from '@material-ui/core'
 import AddPost from './AddPost'
 
 
 export default class Home extends Component {
+    
     state = {
-        getData: []
-      
+        getData: [],
+        loggedIn: false
+
     }
 
     componentDidMount() {
         Axios.get('http://localhost:5000/post')
             .then(response => {
-                this.setState({ getData: response.data });
-                console.log(this.state)
-                // if (localStorage.getItem("userData")) {
-                //     console.log("User On")
-                // } else {
-                //     this.setState({ loggedIn: true })
-                // }
+
+                if (localStorage.getItem('userData') != null) {
+                    this.setState({
+                        getData: response.data,
+                        loggedIn: true
+                    })
+                    console.log(localStorage.getItem('userData').data.username)
+                }
             })
             .catch(error => console.log(`Error fetch API ${error}`))
+
     }
 
-   
-
     render() {
-        let { getData } = this.state
-       
+        let { getData, loggedIn } = this.state
         return (
 
 
             <div>
-                <Navbar />
+                {loggedIn === true ? <NavbarCopy /> : <Navbar />}
+
                 <Container className="Container">
                     <AddPost />
                     {getData.map(getd => (
