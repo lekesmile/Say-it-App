@@ -8,7 +8,7 @@ import AddPost from './AddPost'
 
 
 export default class Home extends Component {
-    
+
     state = {
         getData: [],
         loggedIn: false
@@ -24,7 +24,7 @@ export default class Home extends Component {
                         getData: response.data,
                         loggedIn: true
                     })
-                    console.log(localStorage.getItem('userData').data.username)
+                   
                 }
             })
             .catch(error => console.log(`Error fetch API ${error}`))
@@ -37,7 +37,7 @@ export default class Home extends Component {
 
 
             <div>
-                {loggedIn === true ? <NavbarCopy /> : <Navbar />}
+                {loggedIn === true ? <NavbarCopy  /> : <Navbar />}
 
                 <Container className="Container">
                     <AddPost />
